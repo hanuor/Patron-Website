@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Patron</title>
+  <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+  <style>
+    @font-face {
+  font-family: "San Francisco";
+  font-weight: 500;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff");
+}
+body {
+  
+  margin: 0;
+      padding: 0;
+      background-color: #35252f;
+}
+
+* {
+  font-family: copperplate;
+}
+
+a{
+  text-align: center;
+      color: blue;
+      
+      font-size: 10vw;
+      text-decoration: none;
+}
+.e {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+.ex {
+  text-align: center;
+  color: blue;
+  font-size: 10vw;
+  text-decoration: none;
+}
+
+.b {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 4px;
+  color: cyan;
+  text-decoration: none;
+  background: blue;
+}
+
+  </style>
+</head>
+<body>
+  
+
+  <div class="e"><a href="#" style="color:#e8ebd8;" data-maintext="Hanour Tech" data-shaketext="->Patron<-" class="ex">Hanuor</a></div>
+  
+  <script>
+    $('a').hover(function(){
+  $(this).textShake(500, 100, $(this).data('maintext'), $(this).data('shaketext'), function(){
+    console.log('Do something.')
+  })
+},function(){
+   $(this).textShake(500, 100, $(this).data('shaketext'), $(this).data('maintext'), function(){
+    console.log('Do something again xD.')
+  });
+});
+var mainText = 'Hanuor Presents';
+var shakeText = 'Patron';
+$('.mySelector').hover(function(){
+  $(this).textShake(500, 100, mainText, shakeText, function(){
+    console.log('Shake finished !');
+  });
+});
+
+  </script>
+  <script>
+  (function($){
+  $.fn.textShake = function(time, step,  maintext, shaketext, afteraction){
+    var alphabet = "ROHANSHANTNU",
+      el = $(this),
+
+    shakeInterval = setInterval(function(){
+
+      time -= step;
+      var element;
+      if(time - step >= 0) {
+        element = maintext.split("");
+        for (var l = 0; l < element.length; l++) {
+          element[l].match(/[a-z]/gi) && (element[l] = alphabet.charAt(Math.floor(Math.random() * alphabet.length)));
+        }
+        el.text(element.join(""));
+      }
+      else {
+        if(0 >=time) {
+          clearInterval(shakeInterval);
+          el.text(shaketext);
+          if(typeof afteraction == "function") {
+            afteraction();
+          }
+        }
+      }
+
+
+    }, step);
+  }
+}( jQuery ));</script>
+</body>
+</html>
